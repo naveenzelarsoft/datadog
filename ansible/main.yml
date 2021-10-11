@@ -1,19 +1,6 @@
-- name: apt update
-  hosts: all
-  tasks:
-    - name: apt update
-      apt:
-        update_cache: yes
-        state: present
-- name: Install Datadog Agent on servers in AWS
-  hosts: tag_datadog_yes
-  become: yes
-  user: ubuntu
+- hosts: all
   roles:
-    - { role: Datadog.datadog, become: yes }
+    - { role: datadog.datadog, become: yes }
   vars:
-    datadog_api_key: YOUR_API_KEY
-    datadog_config:
-      logs_enabled: true
-      process_config:
-        enabled: "true"
+    datadog_api_key: "615a6aa06d0a654619d00cd92630aa7d"
+    datadog_site: "datadoghq.com"
