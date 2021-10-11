@@ -7,3 +7,4 @@
         state: present
 - name: Install Datadog-Agent
   command: DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=615a6aa06d0a654619d00cd92630aa7d DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
+  register: mymotd
