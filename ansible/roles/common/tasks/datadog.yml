@@ -1,0 +1,10 @@
+- name: Update Instance
+  apt:
+    update_cache: yes
+
+- hosts: all
+  roles:
+    - { role: datadog.datadog, become: yes }
+  vars:
+    datadog_api_key: "{{ API }}"
+    datadog_site: "datadoghq.com"
