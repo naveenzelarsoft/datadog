@@ -5,6 +5,15 @@
       apt:
         update_cache: yes
         state: present
-- name: Install Datadog-Agent
-  command: DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=615a6aa06d0a654619d00cd92630aa7d DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
-  register: mymotd
+- name: Install Datadog Agent on servers in AWS
+  hosts: tag_datadog_yes
+  become: yes
+  user: ubuntu
+  roles:
+    - { role: Datadog.datadog, become: yes }
+  vars:
+    datadog_api_key: YOUR_API_KEY
+    datadog_config:
+      logs_enabled: true
+      process_config:
+        enabled: "true"
